@@ -1,0 +1,78 @@
+dbitool To-Do List
+
+This is a unordered list of this to-do in dbitool. Either bug fixes,
+new improvements, changes or new modules.
+
+* Finish and test the Makefile.PL
+
+* Finish the pod man page with all the modules.
+
+* Change the main loop to include the open and close operations.
+  Maybe parse too (by creating the log and error in advance).
+  This way all messages would be channel thru log/error. This is
+  a medium change... could implicate other things.
+
+* Test if a fileread/filewrite shortcut with @ is being reused by
+  another module. This could be an error or cause one. Instead it
+  would be nice to implement a named shortcut like name@file. This
+  will allow another module to read from the same file using the
+  stream name instead of the shortcut.
+
+  Obs: I tried to implement this but it's tricky where in the code
+  will the change from the shortcut to the name be implemented.
+
+* Progress: some input modules can now in advance the number of
+  rows. This information could be relayed to other modules and
+  implement a progress bar/info.
+
+* Send emails: create a module to send an email or create a email text
+  with the summary of the process.
+
+* A module to run external programs diverting stdin/stdout from the
+  data flow streams.
+
+* A module to run perl command inside an eval.
+
+* Create a DBItool class where other programs could extend the base
+  class and implement new modules. Or instantiate modules and control
+  the whole process.
+
+* Implement DBD::mysqlinsert
+
+* Implement DBD::cassandrainsert
+
+* Implement DBD::sqliteinsert
+
+* Implement DBD::mssqlselect and mssqlinsert
+
+* Implement a zipread module to read data from a zip file. This could
+  be a single file or multiple files.
+
+* Implement a zipwrite to write the result a single file zipfile.
+
+* Implement a file type: Create multiple streams based on multiple input
+  files: from a directory, from a multiple file container (zip, tar, etc).
+  This is a very complex change to dbitool where streams and modules
+  would be allocated dinamically for each input file.
+
+* Implement TCP network modules: client and server. Both could be used as
+  input or output, depending on the configuration. Maybe 4 new modules?
+
+* Implement lookup modules that use a second stream to lookup values from
+  the main one:
+  - hash in memory
+  - external queries to databases
+  - tree structure
+
+* Implement join modules that join two streams to produce a combination of
+  columns on the output stream. The joined stream would have to be indexed:
+  - hash in memory
+  - external queries to databases (slow?)
+  - tree structure
+  Maybe the index structure could be build by another module in dbitool.
+
+* Implement a concat module to concatenate columns from different streams.
+  This would be a join without any expression.
+
+* Implement a graph module to extract data and create a chart: internal
+  perl chart class, gnuplot or graphviz.
